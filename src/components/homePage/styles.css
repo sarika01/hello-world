@@ -1,0 +1,16 @@
+.text-container {
+    text-align: center;
+}
+.desc-text {
+    font-family: cursive;
+    font-size: 18px;
+    color: #444;
+    padding: 50px;
+}
+.logout-link {
+    padding: 10px;
+    float: right;
+    font-size: 14px;
+    color: #444;
+    cursor: pointer;
+}

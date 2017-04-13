@@ -1,0 +1,107 @@
+
+.App-logo {
+  width: 200px;
+  padding: 25px;
+}
+.banner-text {
+  font-family: 'Open Sans', arial;
+  -webkit-font-smoothing: antialiased;
+  color: #777;
+  font-size: 22px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+.App-header {
+  height: 150px;
+  padding: 20px;
+  text-align: center;
+}
+
+.App-intro {
+  font-size: large;
+  text-align: center;
+}
+
+.form-field {
+  padding: 12px;
+  margin: 20px;
+}
+.form-container {
+  border: 1px solid #fff;
+  width: 350px;
+  padding: 15px;
+  position: fixed;
+  left: calc(50% - 190px);
+}
+.btn-container {
+  padding: 10px;
+  padding-top: 25px;
+}
+.submit-btn {
+  width: 270px;
+  height: 40px;
+  background: #20b1aa;
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  border: 1px solid #b9b9b9;
+  border-top: 1px solid #a0a0a0;
+  font-size: 14px;
+  color: #eee;
+}
+.form-label {
+  float: left;
+}
+.form-input {
+  height: 20px;
+  width: 150px;
+  float: right;
+}
+.text-danger {
+  font-size: small;
+  color: rgb(218, 68, 83);
+}
+.error-text {
+  font-size: small;
+  color: red;
+}
+.login-logo {
+  width: 90px;
+  border-radius: 50%;
+  /*border-color: #20b1aa;*/
+  /*border: 1px solid;*/
+  margin-top: 20px;
+  background-color: #d1d1d1;
+  opacity: 0.5;
+}
+.box-container {
+  margin: 10px;
+  min-height: 370px;
+  background-color: #f7f7f7;
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.input-form {
+  height: 40px;
+  font-size: 16px;
+}
+.register-link {
+  margin-top: 25px;
+  font-size: 16px;
+  color: #20b1aa;
+  font-style: oblique;
+}
+.button {
+    margin-top: 20px;
+    width: 250px;
+  }
+.link-btn {
+  margin-top: 45px !important;
+  width: 200px;
+}
+.font-15 {
+  font-size: 15px;
+}
+.m-t-5 {
+  margin-top: 5px;
+}

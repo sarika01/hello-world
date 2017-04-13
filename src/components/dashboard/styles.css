@@ -1,0 +1,12 @@
+.headerContainer {
+    height: 84px;
+    font-size: 25px;
+    padding: 20px;
+    text-align: center;
+    background: transparent;
+    color: #fefefe;
+}
+
+.nav-tabs > li > a{
+    color: #fff;
+}

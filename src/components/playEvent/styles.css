@@ -1,0 +1,48 @@
+.btn-option {
+    width: 250px;
+    font-size: 18px;
+    text-decoration: none;
+    background: #478af8;
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    border: none;
+    padding: 5px;
+    color: #fff;
+    text-decoration: none;
+}
+button:focus {outline:0;}
+.m-a-10 {
+    margin: 10px
+}
+button[disabled], html input[disabled] {
+    cursor: default;
+    background: #bbb;
+}
+.header-text {
+    font-size: 24px;
+    color: #444;
+    padding: 20px;
+}
+.question-text {
+    font-size: 20px;
+    color: #444;
+    padding: 10px;
+}
+.home-link {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px;
+}
+.link-text {
+    color: #eee;
+    text-decoration: none;
+}
+.success-message {
+    font-size: 18px;
+    color: #444;
+}
+.header-line {
+    padding: 40px 0 0 0;
+    border-bottom: 1px solid #eee;
+}
