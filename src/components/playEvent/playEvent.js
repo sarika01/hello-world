@@ -2,14 +2,11 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
 import {getUserEvent, registerAnswer, getUserScore, resetUserEvent} from '../../actions/userEvents';
-// import {get} from 'lodash';
 import { browserHistory } from 'react-router';
 import _ from 'lodash';
 import AppBar from 'material-ui/AppBar';
-import NavigationChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import IconButton from 'material-ui/IconButton';
-import RaisedButton from 'material-ui/RaisedButton';
 
 class PlayEvent extends Component {
   constructor(props) {
@@ -38,10 +35,9 @@ class PlayEvent extends Component {
     }
   }
   goHome() {
-    browserHistory.push('/');
+    browserHistory.push('/myTest/');
   }
   render() {
-    console.log('details!!!', this.props);
     var self = this;
     var nextQuestion = function() {
       if (self.props.userEvent && self.props.userEvent.questionSet) {

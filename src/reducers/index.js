@@ -2,11 +2,13 @@ import {combineReducers} from 'redux';
 import userSession from './userSession';
 import activeEvents from './activeEvents';
 import userEvents from './userEvents';
+import createEvent from './createEvent';
 
 const appReducer = combineReducers({
     userSession,
     activeEvents,
-    userEvents
+    userEvents,
+    createEvent
 });
 
 const rootReducer = (state, action) => {

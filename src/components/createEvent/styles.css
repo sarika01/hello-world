@@ -1,0 +1,40 @@
+.subHeading {
+    text-align: left;
+    margin-top: 10px;
+    color: #444;
+    font-size: 16px;
+}
+
+.box-container {
+    margin: 10px;
+    min-height: 370px;
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    height: 85vH;
+    overflow: scroll;
+    padding-bottom: 20px;
+}
+
+.number-input {
+    float: right;
+    width: 40px;
+    border: 1px solid #444;
+}
+
+.question-list {
+    text-align: left;
+    margin-top: 10px;
+    color: #444;
+    font-size: 16px;
+    border-bottom: 1px solid #bbb;
+    padding: 5px;
+}
+
+.text-danger {
+  font-size: small;
+  color: rgb(218, 68, 83);
+  text-align: left;
+  width: 92vw;
+  padding-left: 15px;
+}

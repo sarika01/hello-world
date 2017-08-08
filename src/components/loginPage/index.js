@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import logo from './logo.svg';
 import './styles.css';
-import {FormGroup, FormControl, ControlLabel, Form, Col, Button, Row} from 'react-bootstrap';
+import {Col, Row} from 'react-bootstrap';
 import * as firebase from 'firebase';
 import {setUser, loginError, registerError, addUserName, getProfileImage} from '../../actions/userSession';
 import {connect} from 'react-redux';
@@ -36,16 +34,12 @@ class LoginPage extends Component {
   }
   componentDidMount() {
       if (this.props.loggedInStatus) {
-        browserHistory.push('/dashboard');
+        browserHistory.push('/myTest/dashboard');
       }
   }
   componentWillReceiveProps (nextProps) {
-    console.log('!!!', nextProps.loggedInStatus);
-    // if ((nextProps.loginError && !this.props.loginError) || (nextProps.registerError && !this.props.registerError) {
-      
-    // }
     if (nextProps.loggedInStatus) {
-        browserHistory.push('/dashboard');
+        browserHistory.push('/myTest/dashboard');
       }
   }
   handleLogin() {
@@ -78,7 +72,7 @@ class LoginPage extends Component {
         self.props.getProfileImage({email: email});
         // setTimeout(function() {
         //   // self.props.navigate('/dashboard');
-        //   browserHistory.push('/dashboard');
+        //   browserHistory.push('/myExam/dashboard');
         // }, 500);
       })
       .catch(function(error) {
@@ -127,7 +121,7 @@ class LoginPage extends Component {
         self.props.setUser({data: result, username: self.state.userName, role: 'user'});
         self.props.addUserName({name: self.state.userName, email: self.state.email.trim()});
         // setTimeout(function() {
-        //   browserHistory.push('/dashboard');
+        //   browserHistory.push('/myExam/dashboard');
         // }, 500);
       })
       .catch(function(error) {
@@ -161,7 +155,7 @@ class LoginPage extends Component {
     return (
       <div className="App">
         <div className="App-header" style={{display: 'none'}}>
-          <img src={'/certifyMe.png'} className={'App-logo'}/>
+          <img src={'/myTest/certifyMe.png'} className={'App-logo'} alt={''}/>
           <p className={'banner-text'}>All tests. One account.</p>
         </div>
         {
@@ -224,65 +218,13 @@ class LoginPage extends Component {
                 {customErrors.errorMsg !== null && this.state.showValidationErrors ? <span className="error-text">{customErrors.errorMsg}</span> : ''}
               </Col>
             </div>
-            {/*<Row>
-              <Col smOffset={5} sm={2}>
-                <p className="App-intro">
-                  <span>Register to the app!</span>
-                </p>
-              </Col>
-            </Row>
-            <Form horizontal>
-              <FormGroup className="form-field">
-                <Col componentClass={ControlLabel} smOffset={3} sm={2}>Email Address:</Col>
-                <Col sm={4}>
-                  <FormControl
-                      type="email"
-                      placeholder={'enter your email address'}
-                      value={this.state.email}
-                      onChange={(e) => this.setState({email: e.target.value, showValidationErrors: false})}
-                    />
-                </Col>
-                {customErrors.email !== null && this.state.showValidationErrors ? <span className="text-danger">{customErrors.email}</span> : ''}
-              </FormGroup>
-              <FormGroup className="form-field">
-                <Col componentClass={ControlLabel} smOffset={3} sm={2}>Password:</Col>
-                <Col sm={4}>
-                  <FormControl
-                      type="password"
-                      placeholder={'enter password'}
-                      value={this.state.passwd}
-                      onChange={(e) => this.setState({passwd: e.target.value, showValidationErrors: false})}
-                    />
-                </Col>
-              </FormGroup>
-              <FormGroup className="form-field">
-                <Col componentClass={ControlLabel} smOffset={3} sm={2}>Re-enter Password:</Col>
-                <Col sm={4}>
-                  <FormControl
-                      type="password"
-                      placeholder={'enter password again'}
-                      value={this.state.repasswd}
-                      onChange={(e) => this.setState({repasswd: e.target.value, showValidationErrors: false})}
-                    />
-                </Col>
-                {customErrors.passwd !== null && this.state.showValidationErrors ? <span className="text-danger">{customErrors.passwd}</span> : ''}
-              </FormGroup>
-              <FormGroup>
-                <Col smOffset={5} sm={4}>
-                  <Button className={'submit-btn'} disabled={this.state.submitting} onClick={this.handleRegister}>
-                    REGISTER
-                  </Button>
-                </Col>
-              {customErrors.errorMsg !== null && this.state.showValidationErrors ? <span className="error-text">{customErrors.errorMsg}</span> : ''}
-              </FormGroup>
-            </Form>*/}
           </div>
           :
           <div className={'box-container'}>
             <Row>
               <Col smOffset={4} sm={4}>
                 <p className="App-intro">
-                  <img src={'/profile-icon-9.png'} className={'login-logo'}/>
+                  <img src={'/myTest/profile-icon-9.png'} className={'login-logo'} alt={''}/>
                 </p>
               </Col>
             </Row>

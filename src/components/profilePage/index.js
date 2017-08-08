@@ -2,26 +2,14 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
 import {logoutUser, fetchedProfileImage, addUserName} from '../../actions/userSession';
-import Avatar from 'material-ui/Avatar';
-import FileFolder from 'material-ui/svg-icons/file/folder';
-import FontIcon from 'material-ui/FontIcon';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
-import {
-  blue300,
-  indigo900,
-  orange200,
-  deepOrange300,
-  pink400,
-  purple500,
-} from 'material-ui/styles/colors';
 import TextField from 'material-ui/TextField';
 import Dropzone from 'react-dropzone';
 import RaisedButton from 'material-ui/RaisedButton';
 import * as firebase from 'firebase';
 import Snackbar from 'material-ui/Snackbar';
-
-const style = {margin: 5};
+import {get} from 'lodash';
 
 const customErrors = {
   userName: null,
@@ -50,11 +38,9 @@ class ProfilePage extends Component {
     this.props.logoutUser();
   }
   onDrop(files) {
-    console.log('onDrop', files);
     let fr = new window.FileReader();
     let self = this;
     fr.onload = function (e) {
-        console.log('!!!', fr.result);
         self.setState({profilePic: {img: fr.result, file: files[0]}});
     };
     fr.readAsDataURL(files[0]);
@@ -119,13 +105,13 @@ class ProfilePage extends Component {
                 {
                     this.state.profilePic
                     ?
-                    <div><img src={this.state.profilePic.img} className={'profile-img'} /></div>
+                    <div><img src={this.state.profilePic.img} className={'profile-img'} alt={''} /></div>
                     :
                         this.props.userAvatar
                         ?
-                        <div><img src={this.props.userAvatar} className={'profile-img'} /></div>
+                        <div><img src={this.props.userAvatar} className={'profile-img'} alt={''} /></div>
                         :
-                        <div><img src={'/profile-placeholder.png'} className={'profile-img'} /></div>
+                        <div><img src={'/myTest/profile-placeholder.png'} className={'profile-img'} alt={''} /></div>
                 }
                 </Dropzone>
             {customErrors.errorMsg !== null && this.state.showValidationErrors ? <span className="text-danger">{customErrors.errorMsg}</span> : ''}
@@ -143,7 +129,7 @@ class ProfilePage extends Component {
                 <TextField
                   hintText="enter you email address"
                   floatingLabelText="Email"
-                  value={this.props.user.email}
+                  value={get(this.props, 'user.email', '')}
                   disabled={true}
                 />
             </ListItem>

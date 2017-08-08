@@ -9,7 +9,6 @@ import {Router, Route, browserHistory} from 'react-router';
 import Dashboard from './components/dashboard';
 import configureStore from './store/configureStore';
 import createHistory from './core/createHistory';
-import {useBasename} from 'history'; 
 import {persistStore, storages} from 'redux-persist';
 import * as firebase from 'firebase';
 import EventDetails from './components/eventDetails';
@@ -17,15 +16,25 @@ import PlayEvent from './components/playEvent';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {blueA400} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import CreateEvent from './components/createEvent';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+// var config = {
+//         apiKey: "AIzaSyBZD_yJsBw3W2upPDeqL_APEutNENcOP74",
+//         authDomain: "myloginproject-599d6.firebaseapp.com",
+//         databaseURL: "https://myloginproject-599d6.firebaseio.com",
+//         storageBucket: "myloginproject-599d6.appspot.com",
+//         messagingSenderId: "811919416479"
+//       };
+
 var config = {
-        apiKey: "AIzaSyBZD_yJsBw3W2upPDeqL_APEutNENcOP74",
-        authDomain: "myloginproject-599d6.firebaseapp.com",
-        databaseURL: "https://myloginproject-599d6.firebaseio.com",
-        storageBucket: "myloginproject-599d6.appspot.com",
-        messagingSenderId: "811919416479"
-      };
+  apiKey: "AIzaSyB_nggQRQqbUxCMgdbOOIdAy1F1AV1UVio",
+  authDomain: "my-awesome-project-1394e.firebaseapp.com",
+  databaseURL: "https://my-awesome-project-1394e.firebaseio.com",
+  projectId: "my-awesome-project-1394e",
+  storageBucket: "my-awesome-project-1394e.appspot.com",
+  messagingSenderId: "16766743622"
+};
       firebase.initializeApp(config);
       
 let store1 = createStore(myReducers);
@@ -37,11 +46,8 @@ if (existingUserData !== null) {
     initialState = {userSession: existingUserData};
   }
 }
-// const history = createHistory();
-const useHistory = useBasename(createHistory)({
-  basename: '#/'
-});
-const store = configureStore(initialState, {useHistory});
+const history = createHistory();
+const store = configureStore(initialState, {history});
 persistStore(store, {storage: storages.localStorage});
 console.log('STORE', store, store.getState());
 const muiTheme = getMuiTheme({
@@ -53,10 +59,11 @@ ReactDOM.render(
   <MuiThemeProvider muiTheme={muiTheme}>
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component={LoginPage} />
-      <Route path='/dashboard' component={Dashboard} />
-      <Route path='/event/:name' component={EventDetails} />
-      <Route path='/playEvent/:name' component={PlayEvent} />
+      <Route path='/myTest/' component={LoginPage} />
+      <Route path='/myTest/dashboard' component={Dashboard} />
+      <Route path='/myTest/event/:name' component={EventDetails} />
+      <Route path='/myTest/playEvent/:name' component={PlayEvent} />
+      <Route path='/myTest/createEvent' component={CreateEvent} />
     </Router>
   </Provider>
   </MuiThemeProvider>,

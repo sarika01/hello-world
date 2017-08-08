@@ -1,26 +1,29 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-// import {Tabs, Tab} from 'react-bootstrap';
 import './styles.css';
 import HomePage from '../homePage';
 import ActiveOptionsPage from '../activeOptionsPage';
 import ResultPage from '../resultPage';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import AppBar from 'material-ui/AppBar';
-import NavigationChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import IconButton from 'material-ui/IconButton';
-import FlatButton from 'material-ui/FlatButton';
 import {logoutUser} from '../../actions/userSession';
 import ActionExitToApp from 'material-ui/svg-icons/action/exit-to-app';
 import {getActiveEvents, getResults} from '../../actions/activeEvents';
 import ProfilePage from '../profilePage';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+import {browserHistory} from 'react-router';
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {activeKey: 1, value: 'a'};
+    this.state = {activeKey: 1, value: 'a', showMenu: false};
     this.handleTabSelect = this.handleTabSelect.bind(this);
+    this.showMenu = this.showMenu.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
   }
   handleTabSelect(e) {
     console.log('handleSelect', e);
@@ -36,12 +39,35 @@ class Dashboard extends Component {
       value: value,
     });
   };
+  showMenu() {
+    this.setState({showMenu: true});
+  }
+  closeMenu(menuKey) {
+    console.log('closeMenu', menuKey);
+    if (menuKey) {
+      switch (menuKey) {
+        case 1:
+          console.log('execute menukey 1');
+          browserHistory.push('/myTest/createEvent');
+          break;
+        default:
+        break;
+      }
+    }
+    this.setState({showMenu: false});
+  }
   render() {
     return (
       <div>
         <AppBar
           title="Title"
-          iconElementLeft={<IconButton><ActionHome /></IconButton>}
+          iconElementLeft={
+            this.props.role === 'admin'
+            ?
+            <IconButton onClick={this.showMenu}><ActionHome /></IconButton>
+            :
+            null
+          }
           iconElementRight={<IconButton onClick={this.props.logoutUser}><ActionExitToApp /></IconButton>}
         />
         <Tabs value={this.state.value}
@@ -68,6 +94,11 @@ class Dashboard extends Component {
             <ProfilePage />
           </Tab>
         </Tabs>
+        <Drawer docked={false} open={this.state.showMenu}
+          onRequestChange={this.closeMenu}>
+          <MenuItem onTouchTap={() => this.closeMenu(1)}>Create Event</MenuItem>
+          <MenuItem onTouchTap={() => this.closeMenu(2)}>Menu Item 2</MenuItem>
+        </Drawer>
       </div>
     );
   }

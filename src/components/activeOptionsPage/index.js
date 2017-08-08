@@ -4,12 +4,7 @@ import './styles.css';
 import {getActiveEvents} from '../../actions/activeEvents';
 import { browserHistory } from 'react-router'
 import {List, ListItem} from 'material-ui/List';
-import ContentInbox from 'material-ui/svg-icons/content/inbox';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
-import ContentSend from 'material-ui/svg-icons/content/send';
-import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import Divider from 'material-ui/Divider';
-import ActionInfo from 'material-ui/svg-icons/action/info';
 import Paper from 'material-ui/Paper';
 import NavigationChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
 import ActionDone from 'material-ui/svg-icons/action/done';
@@ -30,7 +25,7 @@ class ActiveOptionsPage extends Component {
     }
   }
   loadEvent(eventName) {
-    browserHistory.push('/event/' + eventName);
+    browserHistory.push('/myTest/event/' + eventName);
   }
   render() {
     var self = this;
@@ -64,30 +59,32 @@ class ActiveOptionsPage extends Component {
       });*/
       let activeEventsToDisplay = this.props.activeEvents &&
       this.props.activeEvents.map(function(userEvent, index) {
-        var duration = userEvent.duration * 60000;
-        console.log(userEvent.name, duration, new Date() - new Date(userEvent.from));
-        var dateDiff = new Date() - new Date(userEvent.from);
-        if (dateDiff > 0 && dateDiff < duration) {
-          return (
-            <div key={index}>
-              <ListItem primaryText={userEvent.name} rightIcon={<NavigationChevronRight />} onTouchTap={self.loadEvent.bind(self, userEvent.event)} />
-              <Divider />
-            </div>
-          );
-        } else if (dateDiff < 0) {
-          return (
-            <div key={index}>
-              <ListItem primaryText={userEvent.name}/>
-              <Divider />
-            </div>
-          );
-        } else {
-          return (
-            <div key={index}>
-              <ListItem primaryText={userEvent.name} leftIcon={<ActionDone />}/>
-              <Divider />
-            </div>
-          );
+        if (userEvent) {
+          var duration = userEvent.duration * 60000;
+          console.log(userEvent.name, duration, new Date() - new Date(userEvent.from));
+          var dateDiff = new Date() - new Date(userEvent.from);
+          if (dateDiff > 0 && dateDiff < duration) {
+            return (
+              <div key={index}>
+                <ListItem primaryText={userEvent.name} rightIcon={<NavigationChevronRight />} onTouchTap={self.loadEvent.bind(self, userEvent.event)} />
+                <Divider />
+              </div>
+            );
+          } else if (dateDiff < 0) {
+            return (
+              <div key={index}>
+                <ListItem primaryText={userEvent.name}/>
+                <Divider />
+              </div>
+            );
+          } else {
+            return (
+              <div key={index}>
+                <ListItem primaryText={userEvent.name} leftIcon={<ActionDone />}/>
+                <Divider />
+              </div>
+            );
+          }
         }
       });
     /*return (

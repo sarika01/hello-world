@@ -4,6 +4,7 @@ import './styles.css';
 import {logoutUser} from '../../actions/userSession';
 import {List, ListItem} from 'material-ui/List';
 import Paper from 'material-ui/Paper';
+import {get} from 'lodash';
 
 class ResultPage extends Component {
   constructor(props) {
@@ -19,8 +20,8 @@ class ResultPage extends Component {
       <Paper style={{margin: '10px'}} zDepth={3} >
         <List>
           {
-            this.props.allResults.map((user, index) => {
-              return (<ListItem key={index} primaryText={user.info.name + ' - ' + user.result.score + '/' + user.result.total} />);
+            get(this.props, 'allResults', []).map((user, index) => {
+              return (<ListItem key={index} primaryText={get(user, 'info.name', '') + ' - ' + get(user, 'result.score', '-') + '/' + get(user, 'result.total', '-')} />);
             })
           }
         </List>

@@ -1,6 +1,5 @@
 import * as userEventsActions from '../actions/userEvents';
-import {put, call, fork} from 'redux-saga/effects';
-import {takeEvery} from 'redux-saga';
+import {put, call, fork, takeEvery} from 'redux-saga/effects';
 import * as firebase from 'firebase';
 import _ from 'lodash';
 
@@ -159,13 +158,13 @@ function* registerAnswerHandler(action) {
 }
 
 export function* getUserEventListener() {
-  yield* takeEvery('GET_USER_EVENT', getUserEventHandler);
+  yield takeEvery('GET_USER_EVENT', getUserEventHandler);
 }
 export function* getUserScoreListener() {
-  yield* takeEvery('GET_USER_SCORE', getUserScoreHandler);
+  yield takeEvery('GET_USER_SCORE', getUserScoreHandler);
 }
 export function* registerAnswerListener() {
-  yield* takeEvery('REGISTER_ANSWER', registerAnswerHandler);
+  yield takeEvery('REGISTER_ANSWER', registerAnswerHandler);
 }
 
 export default function* userEventsSagas() {

@@ -38,14 +38,16 @@ export default function(ComposedComponent){
           let current = new Date();
           diffinDays = dateDiffInDays(current,new Date(props.authenticationStore.loggedInTime));
         }
+        console.log('diffindays', diffinDays);
         if (diffinDays === 0) {
           //
         } else {
+          console.log('logout!!!');
           props.logoutUserSuccess();
-          browserHistory.push('/');
+          browserHistory.push('/myTest/');
         }
       } else {
-        browserHistory.push('/');
+        browserHistory.push('/myTest/');
       }
     }
 

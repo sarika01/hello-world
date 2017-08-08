@@ -5,7 +5,6 @@ import {getEventDetails} from '../../actions/activeEvents';
 import {get} from 'lodash';
 import { browserHistory } from 'react-router'
 import AppBar from 'material-ui/AppBar';
-import NavigationChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -19,20 +18,17 @@ class EventDetails extends Component {
     this.goHome = this.goHome.bind(this);
   }
   componentDidMount() {
-      console.log('at event details', this.props);
       this.props.getEventDetails({name: this.props.eventName, email: this.props.user.email});
   }
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps', nextProps);
   }
   startEvent() {
-    browserHistory.push('/playEvent/' + this.props.eventName);
+    browserHistory.push('/myTest/playEvent/' + this.props.eventName);
   }
   goHome() {
-    browserHistory.push('/');
+    browserHistory.push('/myTest/');
   }
   render() {
-    console.log('details!!!', this.props);
     return (
       <div className={"text-container"}>
         {

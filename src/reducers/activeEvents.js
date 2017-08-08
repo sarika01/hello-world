@@ -24,6 +24,12 @@ const initialState = {
 const activeEvents = (state = initialState, action) => {
   switch (action.type) {
     case GET_ACTIVE_EVENTS:
+      return {
+        ...state,
+        loading: true,
+        activeEventsError: false,
+        errorMessage: ''
+      };
     case GET_EVENT_DETAILS:
     case GET_RESULTS:
       return {

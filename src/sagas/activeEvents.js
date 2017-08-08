@@ -1,12 +1,10 @@
 import * as activeEventsActions from '../actions/activeEvents';
-import {put, call, fork} from 'redux-saga/effects';
-import {takeEvery} from 'redux-saga';
+import {put, call, fork, takeEvery} from 'redux-saga/effects';
 import * as firebase from 'firebase';
 import _ from 'lodash';
 
 function getActiveEvents(emailID){
   return new Promise(function(resolve, reject) {
-    var database = firebase.database();
     var email = emailID.replace(/\./g, ';');
     var emailRef = firebase.database().ref('participants/' + email);
     emailRef.once('value').then(function(snapshot) {
@@ -15,11 +13,15 @@ function getActiveEvents(emailID){
       } else {
         Promise.all(
           snapshot.val().map((event, index) => {
-            var eventKey = firebase.database().ref('activeEvents/' + event);
-            return eventKey.once('value').then(function(childSnapshot) {
+            var eventKey = firebase.database().ref('activeEvents');
+            return eventKey.child(event).once('value').then(function(childSnapshot) {
               var obj = childSnapshot.val();
-              obj.event = event;
-              return obj;
+              if (obj !== null) {
+                obj.event = event;
+                return obj;
+              } else {
+                return null;
+              }
             });
           })
         ).then((result) => {
@@ -115,13 +117,13 @@ function* getResultsHandler(action) {
 }
 
 export function* getActiveEventsListener() {
-  yield* takeEvery('GET_ACTIVE_EVENTS', getActiveEventsHandler);
+  yield takeEvery('GET_ACTIVE_EVENTS', getActiveEventsHandler);
 }
 export function* getEventDetailsListener() {
-  yield* takeEvery('GET_EVENT_DETAILS', getEventDetailsHandler);
+  yield takeEvery('GET_EVENT_DETAILS', getEventDetailsHandler);
 }
 export function* getResultsListener() {
-  yield* takeEvery('GET_RESULTS', getResultsHandler);
+  yield takeEvery('GET_RESULTS', getResultsHandler);
 }
 
 export default function* activeEventsSagas() {

@@ -1,6 +1,5 @@
 import * as userSessionActions from '../actions/userSession';
-import {put, call, fork} from 'redux-saga/effects';
-import {takeEvery} from 'redux-saga';
+import {put, call, fork, takeEvery} from 'redux-saga/effects';
 import * as firebase from 'firebase';
 import {browserHistory} from 'react-router';
 
@@ -52,7 +51,7 @@ function* logoutUserHandler(action) {
   try {
     yield call(logoutUser);
     yield put(userSessionActions.logoutUserSuccess());
-    browserHistory.push('/');
+    browserHistory.push('/myTest/');
   } catch (error) {
     yield put(userSessionActions.logoutUserError(error));
   }
@@ -75,13 +74,13 @@ function* getProfileImageHandler(action) {
 }
 
 export function* logoutUserListener() {
-  yield* takeEvery('LOGOUT_USER', logoutUserHandler);
+  yield takeEvery('LOGOUT_USER', logoutUserHandler);
 }
 export function* addUserNameListener() {
-  yield* takeEvery('ADD_USER_NAME', addUserNameHandler);
+  yield takeEvery('ADD_USER_NAME', addUserNameHandler);
 }
 export function* getProfileImageListener() {
-  yield* takeEvery('GET_PROFILE_IMAGE', getProfileImageHandler);
+  yield takeEvery('GET_PROFILE_IMAGE', getProfileImageHandler);
 }
 
 export default function* userSessionSagas() {
