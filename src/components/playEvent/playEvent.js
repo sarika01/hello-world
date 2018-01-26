@@ -95,7 +95,7 @@ class PlayEvent extends Component {
             :
             <div>
               <AppBar
-                title="Title"
+                title=""
                 iconElementLeft={<IconButton onClick={this.goHome}><ActionHome /></IconButton>}
               />
               <div className={'box-container'}>

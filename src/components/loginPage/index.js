@@ -154,10 +154,7 @@ class LoginPage extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header" style={{display: 'none'}}>
-          <img src={'/myTest/certifyMe.png'} className={'App-logo'} alt={''}/>
-          <p className={'banner-text'}>All tests. One account.</p>
-        </div>
+        <div className="LoginContainer">
         {
           this.state.registerUser
           ?
@@ -220,74 +217,198 @@ class LoginPage extends Component {
             </div>
           </div>
           :
-          <div className={'box-container'}>
-            <Row>
+          <div className="loginTextContainer">
+            <div>
               <Col smOffset={4} sm={4}>
-                <p className="App-intro">
-                  <img src={'/myTest/profile-icon-9.png'} className={'login-logo'} alt={''}/>
-                </p>
+              <input type="text"
+                className="loginInput"
+                placeholder="Email Id"
+                value={this.state.email}
+                onChange={(e) => this.setState({email: e.target.value, showValidationErrors: false})}
+                />
+              {/* <TextField
+                  hintText="enter you email address"
+                  floatingLabelText="Email"
+                  value={this.state.email}
+                  onChange={(e) => this.setState({email: e.target.value, showValidationErrors: false})}
+                /><br /> */}
               </Col>
-            </Row>
-            {
-              !this.state.showNext
-              ?
-              <div>
-                <div>
-                  <Col smOffset={4} sm={4}>
-                  <TextField
-                      hintText="enter you email address"
-                      floatingLabelText="Email"
-                      value={this.state.email}
-                      onChange={(e) => this.setState({email: e.target.value, showValidationErrors: false})}
-                    /><br />
-                  </Col>
-                </div>
-                {customErrors.email !== null && this.state.showValidationErrors ? <span className="text-danger">{customErrors.email}</span> : ''}
-                <div>
-                  <Col smOffset={4} sm={4}>
-                    <RaisedButton label="Next >" primary={true} className={'button'} 
-                      disabled={this.state.submitting} onClick={this.handleNext}/>
-                  </Col>
-                </div>
-                <div>
-                  <Col smOffset={4} sm={4}>
-                    <FlatButton label="Create account" primary={true} className={'link-btn'}
-                      disabled={this.state.submitting} onClick={this.showRegistration}/>
-                  </Col>
-                </div>
-              </div>
-              :
-              <div>
-                <p className={'font-15'}>{this.state.email}</p>
-                <div>
-                  <Col smOffset={4} sm={4}>
-                  <TextField
-                      hintText=""
-                      floatingLabelText="Password"
-                      type={"password"}
-                      value={this.state.passwd}
-                      onChange={(e) => this.setState({passwd: e.target.value, showValidationErrors: false})}
-                    /><br />
-                  </Col>
-                </div>
-                {customErrors.passwd !== null && this.state.showValidationErrors ? <span className="text-danger">{customErrors.passwd}</span> : ''}
-                <div>
-                  <Col smOffset={4} sm={4}>
-                    <RaisedButton label="Continue" primary={true} className={'button'} 
-                      disabled={this.state.submitting} onClick={this.handleLogin}/>
-                  </Col>
-                </div>
-                <div className={'m-t-5'}>
-                  <Col smOffset={4} sm={4}>
-                    {customErrors.errorMsg !== null && this.state.showValidationErrors ? <span className="error-text">{customErrors.errorMsg}</span> : ''}
-                  </Col>
-                </div>
-              </div>
+            </div>
+            {customErrors.email !== null && this.state.showValidationErrors ? <span className="text-danger">{customErrors.email}</span> : ''}
+            <div>
+              <Col smOffset={4} sm={4}>
+              <input type="password"
+                className="loginInput"
+                placeholder="Password"
+                value={this.state.passwd}
+                onChange={(e) => this.setState({passwd: e.target.value, showValidationErrors: false})}
+              />
+              {/* <TextField
+                  hintText=""
+                  floatingLabelText="Password"
+                  type={"password"}
+                  value={this.state.passwd}
+                  onChange={(e) => this.setState({passwd: e.target.value, showValidationErrors: false})}
+                /><br /> */}
+              </Col>
+            </div>
+            {customErrors.passwd !== null && this.state.showValidationErrors ? <span className="text-danger">{customErrors.passwd}</span> : ''}
+            <div>
+              <Col smOffset={4} sm={4}>
+                <button className="signinBtn" disabled={this.state.submitting} onClick={this.handleLogin}>
+                  {'SIGN IN'}
+                </button>
+                {/* <RaisedButton label="Sign in" primary={true} className={'submit-btn'} 
+                  disabled={this.state.submitting} onClick={this.handleLogin}/> */}
+              </Col>
+            </div>
+            <div className={'m-t-5'}>
+              <Col smOffset={4} sm={4}>
+                {customErrors.errorMsg !== null && this.state.showValidationErrors ? <span className="error-text">{customErrors.errorMsg}</span> : ''}
+              </Col>
+            </div>
             }
           </div>
         }
+        </div>
       </div>
     );
+    // return (
+    //   <div className="App">
+    //     <div className="App-header" style={{display: 'none'}}>
+    //       <img src={'/myTest/certifyMe.png'} className={'App-logo'} alt={''}/>
+    //       <p className={'banner-text'}>All tests. One account.</p>
+    //     </div>
+    //     {
+    //       this.state.registerUser
+    //       ?
+    //       <div className={'box-container'}>
+    //         <div>
+    //           <Col smOffset={4} sm={4}>
+    //           <TextField
+    //               hintText="enter your full name"
+    //               floatingLabelText="Name"
+    //               value={this.state.userName}
+    //               onChange={(e) => this.setState({userName: e.target.value, showValidationErrors: false})}
+    //             /><br />
+    //           </Col>
+    //         </div>
+    //         {customErrors.name !== null && this.state.showValidationErrors ? <span className="text-danger">{customErrors.name}</span> : ''}
+    //         <div>
+    //           <Col smOffset={4} sm={4}>
+    //           <TextField
+    //               hintText="enter you email address"
+    //               floatingLabelText="Email"
+    //               value={this.state.email}
+    //               onChange={(e) => this.setState({email: e.target.value, showValidationErrors: false})}
+    //             /><br />
+    //           </Col>
+    //         </div>
+    //         {customErrors.email !== null && this.state.showValidationErrors ? <span className="text-danger">{customErrors.email}</span> : ''}
+    //         <div>
+    //           <Col smOffset={4} sm={4}>
+    //           <TextField
+    //               hintText=""
+    //               floatingLabelText="Password"
+    //               type={"password"}
+    //               value={this.state.passwd}
+    //               onChange={(e) => this.setState({passwd: e.target.value, showValidationErrors: false})}
+    //             /><br />
+    //           </Col>
+    //         </div>
+    //         <div>
+    //           <Col smOffset={4} sm={4}>
+    //           <TextField
+    //               hintText="enter password again"
+    //               floatingLabelText="Re-enter password"
+    //               type={"password"}
+    //               value={this.state.repasswd}
+    //               onChange={(e) => this.setState({repasswd: e.target.value, showValidationErrors: false})}
+    //             /><br />
+    //           </Col>
+    //         </div>
+    //         {customErrors.passwd !== null && this.state.showValidationErrors ? <span className="text-danger">{customErrors.passwd}</span> : ''}
+    //         <div>
+    //           <Col smOffset={4} sm={4}>
+    //             <RaisedButton label="Create" primary={true} className={'button'} 
+    //               disabled={this.state.submitting} onClick={this.handleRegister}/>
+    //           </Col>
+    //         </div>
+    //         <div className={'m-t-5'}>
+    //           <Col smOffset={4} sm={4}>
+    //             {customErrors.errorMsg !== null && this.state.showValidationErrors ? <span className="error-text">{customErrors.errorMsg}</span> : ''}
+    //           </Col>
+    //         </div>
+    //       </div>
+    //       :
+    //       <div className={'box-container'}>
+    //         <Row>
+    //           <Col smOffset={4} sm={4}>
+    //             <p className="App-intro">
+    //               <img src={'/myTest/profile-icon-9.png'} className={'login-logo'} alt={''}/>
+    //             </p>
+    //           </Col>
+    //         </Row>
+    //         {
+    //           !this.state.showNext
+    //           ?
+    //           <div>
+    //             <div>
+    //               <Col smOffset={4} sm={4}>
+    //               <TextField
+    //                   hintText="enter you email address"
+    //                   floatingLabelText="Email"
+    //                   value={this.state.email}
+    //                   onChange={(e) => this.setState({email: e.target.value, showValidationErrors: false})}
+    //                 /><br />
+    //               </Col>
+    //             </div>
+    //             {customErrors.email !== null && this.state.showValidationErrors ? <span className="text-danger">{customErrors.email}</span> : ''}
+    //             <div>
+    //               <Col smOffset={4} sm={4}>
+    //                 <RaisedButton label="Next >" primary={true} className={'button'} 
+    //                   disabled={this.state.submitting} onClick={this.handleNext}/>
+    //               </Col>
+    //             </div>
+    //             <div>
+    //               <Col smOffset={4} sm={4}>
+    //                 <FlatButton label="Create account" primary={true} className={'link-btn'}
+    //                   disabled={this.state.submitting} onClick={this.showRegistration}/>
+    //               </Col>
+    //             </div>
+    //           </div>
+    //           :
+    //           <div>
+    //             <p className={'font-15'}>{this.state.email}</p>
+    //             <div>
+    //               <Col smOffset={4} sm={4}>
+    //               <TextField
+    //                   hintText=""
+    //                   floatingLabelText="Password"
+    //                   type={"password"}
+    //                   value={this.state.passwd}
+    //                   onChange={(e) => this.setState({passwd: e.target.value, showValidationErrors: false})}
+    //                 /><br />
+    //               </Col>
+    //             </div>
+    //             {customErrors.passwd !== null && this.state.showValidationErrors ? <span className="text-danger">{customErrors.passwd}</span> : ''}
+    //             <div>
+    //               <Col smOffset={4} sm={4}>
+    //                 <RaisedButton label="Continue" primary={true} className={'button'} 
+    //                   disabled={this.state.submitting} onClick={this.handleLogin}/>
+    //               </Col>
+    //             </div>
+    //             <div className={'m-t-5'}>
+    //               <Col smOffset={4} sm={4}>
+    //                 {customErrors.errorMsg !== null && this.state.showValidationErrors ? <span className="error-text">{customErrors.errorMsg}</span> : ''}
+    //               </Col>
+    //             </div>
+    //           </div>
+    //         }
+    //       </div>
+    //     }
+    //   </div>
+    // );
   }
 }
 

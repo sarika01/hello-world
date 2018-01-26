@@ -25,12 +25,15 @@ class Dashboard extends Component {
     this.showMenu = this.showMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
   }
+  componentDidMount() {
+    this.props.getActiveEvents({email: this.props.user.email});
+  }
   handleTabSelect(e) {
     console.log('handleSelect', e);
     this.setState({activeKey: e});
   }
   handleChange = (value) => {
-    if (value === 'b') {
+    if (value === 'a') {
       this.props.getActiveEvents({email: this.props.user.email});
     } else if (value === 'c') {
       this.props.getResults();
@@ -60,7 +63,7 @@ class Dashboard extends Component {
     return (
       <div>
         <AppBar
-          title="Title"
+          title=""
           iconElementLeft={
             this.props.role === 'admin'
             ?
@@ -73,11 +76,12 @@ class Dashboard extends Component {
         <Tabs value={this.state.value}
           onChange={this.handleChange}>
           <Tab label="Home" value={'a'}>
-            <HomePage />
-          </Tab>
-          <Tab label="Options" value={'b'} >
+            {/* <HomePage /> */}
             <ActiveOptionsPage />
           </Tab>
+          {/* <Tab label="Options" value={'b'} >
+            <ActiveOptionsPage />
+          </Tab> */}
           {
             this.props.role === 'admin'
             ?

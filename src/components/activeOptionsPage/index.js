@@ -102,7 +102,7 @@ class ActiveOptionsPage extends Component {
       </div>
     );*/
     return (
-       <Paper zDepth={2} style={{margin: '5px'}}>
+       <Paper zDepth={2} style={{margin: '12px'}}>
           <List>
             {activeEventsToDisplay}
           </List>

@@ -19,14 +19,21 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CreateEvent from './components/createEvent';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+// var config = {
+//         apiKey: "AIzaSyBZD_yJsBw3W2upPDeqL_APEutNENcOP74",
+//         authDomain: "myloginproject-599d6.firebaseapp.com",
+//         databaseURL: "https://myloginproject-599d6.firebaseio.com",
+//         storageBucket: "myloginproject-599d6.appspot.com",
+//         messagingSenderId: "811919416479"
+//       };
 var config = {
-        apiKey: "AIzaSyBZD_yJsBw3W2upPDeqL_APEutNENcOP74",
-        authDomain: "myloginproject-599d6.firebaseapp.com",
-        databaseURL: "https://myloginproject-599d6.firebaseio.com",
-        storageBucket: "myloginproject-599d6.appspot.com",
-        messagingSenderId: "811919416479"
-      };
-
+  apiKey: "AIzaSyB_nggQRQqbUxCMgdbOOIdAy1F1AV1UVio",
+  authDomain: "my-awesome-project-1394e.firebaseapp.com",
+  databaseURL: "https://my-awesome-project-1394e.firebaseio.com",
+  projectId: "my-awesome-project-1394e",
+  storageBucket: "my-awesome-project-1394e.appspot.com",
+  messagingSenderId: "16766743622"
+};
 firebase.initializeApp(config);
       
 let store1 = createStore(myReducers);
